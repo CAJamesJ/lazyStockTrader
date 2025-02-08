@@ -1,0 +1,16 @@
+# Virtual environment
+venv/
+.venv/
+
+# Byte-compiled / cached files
+__pycache__/
+*.py[cod]
+
+# IDE / Editor settings
+.vscode/
+*.swp
+*.swo
+
+# Logs and environment files
+*.log
+.env
