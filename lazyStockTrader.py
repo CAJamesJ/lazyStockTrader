@@ -1,8 +1,8 @@
 import csv 
 
 list_of_csv = list()
-  
-with open('VOO_close_25_01.csv', 'r') as read_obj: 
+# 'VOO_close_25_01.csv'
+with open('SPY_close_25_01.csv', 'r') as read_obj: 
     # Return a reader object which will
     # iterate over lines in the given csvfile
     csv_reader = csv.reader(read_obj)
@@ -19,11 +19,12 @@ with open('VOO_close_25_01.csv', 'r') as read_obj:
 
 cost = 0
 totalShares = 0
+numOfShares = 4
 
 for i in range(3, len(list_of_csv)): #csv have 3 initial rows that are not valid
     try:
-        cost += float(list_of_csv[i]) 
-        totalShares += 1
+        cost += float(list_of_csv[i]) * numOfShares
+        totalShares += numOfShares
     except ValueError:
         print(f"Skipping invalid price: {i, list_of_csv[i]}")
 
