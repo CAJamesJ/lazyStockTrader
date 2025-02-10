@@ -1,20 +1,36 @@
-# import stock_pandas as spd
-# stock = spd.Stock('AAPL', start='2020-01-01', end='2025-01-01')
-# stock.ema(period=20).plot()
+import csv 
 
-# import pandas as pd
-# import requests
+list_of_csv = list()
+  
+with open('VOO_close_25_01.csv', 'r') as read_obj: 
+    # Return a reader object which will
+    # iterate over lines in the given csvfile
+    csv_reader = csv.reader(read_obj)
 
-# api_key = "YOUR_API_KEY"
-# symbol = "AAPL"
+    result = []
 
-# url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}&datatype=csv"
-# response = requests.get(url)
+    for day in csv_reader:
+        result.append(day[1])
 
-# # Save the file
-# with open("AAPL_stock.csv", "wb") as file:
-#     file.write(response.content)
+    # convert string to list
+    list_of_csv = list(result)
 
-# # Read into Pandas
-# df = pd.read_csv("AAPL_stock.csv")
-# print(df.head())
+    # print(list_of_csv)
+
+cost = 0
+totalShares = 0
+
+for i in range(3, len(list_of_csv)): #csv have 3 initial rows that are not valid
+    try:
+        cost += float(list_of_csv[i]) 
+        totalShares += 1
+    except ValueError:
+        print(f"Skipping invalid price: {i, list_of_csv[i]}")
+
+# print(cost, totalShares)
+# print(totalShares*float(list_of_csv[-1])/cost)
+print(f"The cost was {cost} and it could be {totalShares*float(list_of_csv[-1])}")
+
+# print(totalShares*int(list_of_csv[-1])/cost)
+
+    

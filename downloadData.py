@@ -6,8 +6,8 @@ end_date = '2025-01-01'
 # Set the ticker
 ticker = 'VOO'
 # Get the data
-data = yf.download(ticker, start_date, end_date, interval='1wk')
+data = yf.download(ticker, end=end_date, interval='1mo') #default is 99 years ago
 
 close_data = data[['Close']]
 
-close_data.to_csv("VOO_close_7dInt_24_01_25_01.csv")
+close_data.to_csv("VOO_close_25_01.csv")
